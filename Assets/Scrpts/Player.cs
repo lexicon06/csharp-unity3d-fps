@@ -3,8 +3,10 @@
 public class Player : MonoBehaviour
 {
     public float Speed = 12.3f;
-    public CharacterController myController;
+    public CharacterController MyController;
     public float MouseSensitivity = 600f;
+    public Transform MyCameraHead;
+    private float CameraVerticalRotation;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,8 +40,11 @@ This lets you use both input systems side by side, and your current code will wo
 
         float mouseX = Input.GetAxisRaw("Mouse X") * MouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxisRaw("Mouse Y") * MouseSensitivity * Time.deltaTime;
-        transform.Rotate(Vector3.up * mouseX);
 
+        CameraVerticalRotation -= mouseY;
+
+        transform.Rotate(Vector3.up * mouseX);
+        MyCameraHead.localRotation = Quaternion.Euler(CameraVerticalRotation, 0f, 0f);
     }
 
     private void AddVelocity()
@@ -52,6 +57,6 @@ This lets you use both input systems side by side, and your current code will wo
         movement = movement * Speed * Time.deltaTime;
 
 
-        myController.Move(movement);
+        MyController.Move(movement);
     }
 }

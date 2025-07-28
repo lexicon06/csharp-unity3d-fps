@@ -1259,8 +1259,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 12.3
-  myController: {fileID: 879048658}
-  MouseSensitivity: 600
+  MyController: {fileID: 879048658}
+  MouseSensitivity: 788.3
+  MyCameraHead: {fileID: 330585546}
 --- !u!1 &984336799
 GameObject:
   m_ObjectHideFlags: 0
