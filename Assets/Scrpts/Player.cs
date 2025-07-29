@@ -42,6 +42,7 @@ This lets you use both input systems side by side, and your current code will wo
         float mouseY = Input.GetAxisRaw("Mouse Y") * MouseSensitivity * Time.deltaTime;
 
         CameraVerticalRotation -= mouseY;
+        CameraVerticalRotation = Mathf.Clamp(CameraVerticalRotation, -90f, 90f);
 
         transform.Rotate(Vector3.up * mouseX);
         MyCameraHead.localRotation = Quaternion.Euler(CameraVerticalRotation, 0f, 0f);
