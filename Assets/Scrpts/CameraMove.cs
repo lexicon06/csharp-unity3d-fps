@@ -7,11 +7,23 @@ public class CameraMove : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;//hide our cursor
+       LockCamera();
     }
 
 
     private void LateUpdate()
+    {
+    
+        UpdateCameraMovement();
+      
+    }
+
+    void LockCamera()
+    {
+        Cursor.lockState = CursorLockMode.Locked;//hide our cursor
+    }
+
+    void UpdateCameraMovement()
     {
         transform.position = MyPlayerHead.position;
         transform.rotation = MyPlayerHead.rotation;
