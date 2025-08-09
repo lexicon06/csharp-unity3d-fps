@@ -17,7 +17,7 @@ public class BulletController : MonoBehaviour
     }
 
 
-    void MoveBullet()
+    private void MoveBullet()
     {
         MyRigidBody.linearVelocity = transform.forward * Speed;
     }

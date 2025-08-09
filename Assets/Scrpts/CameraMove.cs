@@ -18,12 +18,12 @@ public class CameraMove : MonoBehaviour
       
     }
 
-    void LockCamera()
+    private void LockCamera()
     {
         Cursor.lockState = CursorLockMode.Locked;//hide our cursor
     }
 
-    void UpdateCameraMovement()
+    private void UpdateCameraMovement()
     {
         transform.position = MyPlayerHead.position;
         transform.rotation = MyPlayerHead.rotation;
