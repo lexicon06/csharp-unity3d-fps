@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     public float MouseSensitivity = 600f;
     public Transform MyCameraHead;
     private float CameraVerticalRotation;
+    public GameObject bullet;
+    public Transform firePosition;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,19 +38,14 @@ This lets you use both input systems side by side, and your current code will wo
         */
 
 
-        AddVelocity();
+        PlayerMovement();
 
-        float mouseX = Input.GetAxisRaw("Mouse X") * MouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * MouseSensitivity * Time.deltaTime;
+        CameraMovement();
 
-        CameraVerticalRotation -= mouseY;
-        CameraVerticalRotation = Mathf.Clamp(CameraVerticalRotation, -90f, 90f);
-
-        transform.Rotate(Vector3.up * mouseX);
-        MyCameraHead.localRotation = Quaternion.Euler(CameraVerticalRotation, 0f, 0f);
+        Shoot();
     }
 
-    private void AddVelocity()
+    private void PlayerMovement()
     {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
@@ -59,5 +56,25 @@ This lets you use both input systems side by side, and your current code will wo
 
 
         MyController.Move(movement);
+    }
+
+    private void CameraMovement()
+    {
+        float mouseX = Input.GetAxisRaw("Mouse X") * MouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * MouseSensitivity * Time.deltaTime;
+
+        CameraVerticalRotation -= mouseY;
+        CameraVerticalRotation = Mathf.Clamp(CameraVerticalRotation, -90f, 90f);
+
+        transform.Rotate(Vector3.up * mouseX);
+        MyCameraHead.localRotation = Quaternion.Euler(CameraVerticalRotation, 0f, 0f);
+    }
+
+    private void Shoot()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(bullet, firePosition.position, firePosition.rotation);
+        }
     }
 }
